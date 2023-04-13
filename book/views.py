@@ -1,4 +1,4 @@
-from rest_framework.generics import ListAPIView
+from rest_framework.generics import ListAPIView, RetrieveAPIView, DestroyAPIView, UpdateAPIView
 from rest_framework import viewsets
 from rest_framework.response import Response
 
@@ -6,10 +6,18 @@ from .models import Book
 from .serializer import BookSerializer
 
 
-class BookListView(viewsets.ViewSet):
+class BookListAPIView(ListAPIView):
+    queryset = Book.objects.all()
+    serializer_class = BookSerializer
 
-    def get(self, request):
-        books = Book.objects.all()
-        serializer = BookSerializer(books, many=True)
+class BookDetailAPIVIew(RetrieveAPIView):
+    queryset = Book.objects.all()
+    serializer_class = BookSerializer
 
-        return Response(serializer.data)
+class BookDeleteView(DestroyAPIView):
+    queryset = Book.objects.all()
+    serializer_class = BookSerializer
+
+class BookUpdateView(UpdateAPIView):
+    queryset = Book.objects.all()
+    serializer_class = BookSerializer
