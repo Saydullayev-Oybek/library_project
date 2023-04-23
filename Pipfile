@@ -12,6 +12,7 @@ psycopg = "*"
 psycopg2 = "*"
 prettytable = "*"
 django-allauth = "*"
+gunicorn = "*"
 
 [dev-packages]
 
